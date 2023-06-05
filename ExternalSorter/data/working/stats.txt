@@ -1,0 +1,36 @@
+------  STATS ------ 1 buffer @ 4 bytes
+File name: .\data\working\sampleBlock50.bin
+Cache Hits: 1,834,107
+Cache Misses: 4,191,037
+Disk reads: 4,191,037
+Disk Writes: 1,513,942
+Time to sort: 22,989 ms
+------  STATS ------ 10 buffers @ 4 bytes
+File name: .\data\working\sampleBlock50.bin
+Cache Hits: 4,347,554
+Cache Misses: 1,677,590
+Disk reads: 1,677,590
+Disk Writes: 828,200
+Time to sort: 9,918 ms
+------  STATS ------ 1 buffer @ 4096 bytes
+File name: .\data\working\sampleBlock50.bin
+Cache Hits: 4,759,944
+Cache Misses: 1,214,050
+Disk reads: 1,214,050
+Disk Writes: 592,152
+Time to sort: 15,041 ms
+------  STATS ------ 10 buffers @ 4096 bytes
+File name: .\data\working\sampleBlock50.bin
+Cache Hits: 5,880,033
+Cache Misses: 93,961
+Disk reads: 93,961
+Disk Writes: 89,327
+Time to sort: 2,241 ms
+
+Conclusion: Number of buffers seems to matter more than the size of the buffers.
+The single, large buffer only performed marginally better than the multiple, small
+buffers. This is surprising and might warrant multiple tests to rule out bad data.
+
+Using a single buffer of 4 bytes is equivalent to unbuffered disk I/O. Clearly, 
+using just a small amount of buffers (10) at a reasonable size (4096) drastically 
+improves performance over unbuffered disk access. 

@@ -58,11 +58,6 @@ public class Buffer
         blockOffset = raf.getFilePointer();
 
         raf.read(byteData);
-// if (bytesRead < capacity)
-// {
-// this.flush();
-// throw new EOFException("Buffer not full due to EOF");
-// }
 
         records = Record.toRecArray(byteData);
 
